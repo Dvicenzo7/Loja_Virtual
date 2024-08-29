@@ -111,7 +111,7 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="cargo">Cargo</label>
-						<select id="cargo" class="form-control" name="cargo">
+						<select id="cargo" class="form-control" th:field="*{cargo}">
 							<option value="">Selecione...</option>
 							<option value="1">Auxiliar Contábil</option>
 							<option value="2">Auxiliar Administrativo</option>
@@ -131,36 +131,36 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="cidade">Cidade</label>
-						<input type="text" class="form-control" id="cidade" name="cidade" value=""/>
+						<input type="text" class="form-control" id="cidade" th:field="*{cidade}" value=""/>
 						<div class="invalid-feedback"></div>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="logradouro">Logradouro</label>
-						<input type="text" class="form-control" id="logradouro" placeholder="logradouro sem número" name="logradouro" value=""/>
+						<input type="text" class="form-control" id="logradouro" placeholder="logradouro sem número" th:field="*{logradouro}" value=""/>
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="numero">Número</label>
-						<input type="text" class="form-control" id="numero" name="numero" value=""/>
+						<input type="text" class="form-control" id="numero" th:field="*{numero}" value=""/>
 						<div class="invalid-feedback"></div>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="complemento">Complemento</label>
-						<input type="text" class="form-control" id="complemento" placeholder="fundos, casa, AP. 102, .." name="complemento" value=""/>
+						<input type="text" class="form-control" id="complemento" placeholder="fundos, casa, AP. 102, .." th:field="*{complemento}" value=""/>
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="bairro">Bairro</label>
-						<input type="text" class="form-control" id="bairro" name="bairro" value=""/>
+						<input type="text" class="form-control" id="bairro" th:field="*{bairro}" value=""/>
 						<div class="invalid-feedback"></div>
 					</div>
 					<div class="form-group col-md-4">
 						<label for="uf">UF</label>
-						<select id="uf" class="form-control" name="uf">
+						<select id="uf" class="form-control" th:field="*{uf}">
 							<option value="">Selecione...</option>
 							<option value="AC">AC</option>
 							<option value="AL">AL</option>
@@ -193,7 +193,7 @@
 					</div>
 					<div class="form-group col-md-2">
 						<label for="cep">CEP</label>
-						<input type="text" class="form-control" id="cep" data-mask="00000-000" name="cep" value=""/>
+						<input type="text" class="form-control" id="cep" data-mask="00000-000" th:field="*{cep}" value=""/>
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
