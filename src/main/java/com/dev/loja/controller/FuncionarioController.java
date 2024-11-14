@@ -4,6 +4,7 @@ import com.dev.loja.entity.Funcionario;
 import com.dev.loja.repository.CidadeRepository;
 import com.dev.loja.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,7 @@ public class FuncionarioController {
         if(result.hasErrors()){
             return cadastrar(funcionario);
         }
+//        funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
         funcionarioRepository.saveAndFlush(funcionario);
         return cadastrar(new Funcionario());
     }
