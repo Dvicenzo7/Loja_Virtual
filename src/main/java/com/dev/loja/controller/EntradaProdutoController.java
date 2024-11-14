@@ -2,6 +2,7 @@ package com.dev.loja.controller;
 
 import com.dev.loja.entity.EntradaItens;
 import com.dev.loja.entity.EntradaProduto;
+import com.dev.loja.entity.Produto;
 import com.dev.loja.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class EntradaProdutoController {
@@ -52,10 +54,20 @@ public class EntradaProdutoController {
 
         if (acao.equals("itens")) {
             this.listaEntrada.add(entradaItens);
+        } else if (acao.equals("salvar")) {
+            entradaProdutoRepository.save(entrada);
+            for (EntradaItens it : listaEntrada){
+                it.setEntrada(entrada);
+                entradaItensRepository.saveAndFlush(it);
+                Optional<Produto> produto  = produtoRepository.findById(it.getProduto().getId());
+                Produto produto1 = produto.get();
+                produto1.setQuantidadeEstoque(produto1.getQuantidadeEstoque() + it.getQuantidade());
+                produto1.setValorVenda(it.getValorVenda());
+                produtoRepository.saveAndFlush(produto1);
+                this.listaEntrada = new ArrayList<>();
+            }
+            return cadastrar(new EntradaProduto(),new EntradaItens());
         }
-
-        System.out.println(this.listaEntrada.size());
-
         return cadastrar(entrada, new EntradaItens());
     }
 
