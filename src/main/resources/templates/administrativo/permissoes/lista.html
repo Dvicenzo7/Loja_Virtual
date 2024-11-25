@@ -79,15 +79,26 @@
                 <li class="nav-item"><a class="nav-link" href="/administrativo/funcionarios/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="/administrativo/funcionarios/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar</span></a></li>
             </ul>
+
             <ul class="nav nav-pills">
-                <li class="nav-item"><span class="nav-link active">papeis</span></li>
+                <li class="nav-item"><span class="nav-link active">Papeis</span></li>
                 <li class="nav-item"><a class="nav-link" href="/administrativo/papeis/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="/administrativo/papeis/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar</span></a></li>
             </ul>
             <ul class="nav nav-pills">
-                <li class="nav-item"><span class="nav-link active">Cidades</span></li>
-                <li class="nav-item"><a class="nav-link" href="/administrativo/cidades/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="/administrativo/cidades/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar</span></a></li>
+                <li class="nav-item">
+                    <span class="nav-link active">Cidades</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/administrativo/cidades/cadastrar">
+                        <i class="oi oi-plus"></i> <span>Cadastrar</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/administrativo/cidades/listar">
+                        <i class="oi oi-spreadsheet"></i> <span>Listar</span>
+                    </a>
+                </li>
             </ul>
             <ul class="nav nav-pills">
                 <li class="nav-item"><span class="nav-link active">Produtos</span></li>
@@ -102,12 +113,12 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <i class="oi oi-caret-right"></i> <span>Lista de Produtos</span>
+                        <i class="oi oi-caret-right"></i> <span>Lista de Permissoes</span>
                     </li>
                 </ul>
-                <a class="btn btn-primary btn-md" href="/administrativo/produtos/cadastrar" role="button">
+                <a class="btn btn-primary btn-md" href="/administrativo/permissoess/cadastrar" role="button">
                     <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
-                    <span>Cadastrar Produtos</span>
+                    <span>Cadastrar Permissoes</span>
                 </a>
             </div>
         </nav>
@@ -118,32 +129,31 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Descrição</th>
-                        <th>Quantidade em Estoque</th>
-                        <th>Valor de venda</th>
-                        <th>Imagem</th>
+                        <th>Nome da Funcionario</th>
+                        <th>Nome do Papel</th>
+                        <th>Data de cadastro</th>
+                        <th>Ação</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="produto : ${listaprodutos}">
-                        <td th:text="${produto.id}"></td>
-                        <td th:text="${produto.descricao}"></td>
-                        <td th:text="${produto.quantidadeEstoque}"></td>
-                        <td th:text="${produto.valorVenda}"></td>
-                        <td><img th:src="@{/administrativo/produtos/mostrarImagem/{imagem}(imagem=${produto.nomeImagem})}" width="100px"></td>
+                    <tr th:each="permissao : ${listaPermissoess}">
+                        <td th:text="${permissao.id}"></td>
+                        <td th:text="${permissao.funcionario.nome}"></td>
+                        <td th:text="${permissao.papel.nome}"></td>
+                        <td th:text="${permissao.dataCadastro}"></td>
                         <td colspan="2">
                             <a class="btn btn-info btn-sm"
-                               th:href="@{/administrativo/produtos/editar/{id}(id=${produto.id})}"
+                               th:href="@{/administrativo/permissoes/editar/{id}(id=${permissao.id})}"
                                role="button">
                                 <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
                             </a>
 
                             <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-warning"
-                               th:attr="data-target='#modal-warning'+${produto.id }"><span class="oi oi-circle-x"
+                               th:attr="data-target='#modal-warning'+${permissao.id }"><span class="oi oi-circle-x"
                                                                                         title="Excluir"
                                                                                         aria-hidden="true"></span></a>
 
-                            <div class="modal modal-warning fade in" th:id="modal-warning+${produto.id }">
+                            <div class="modal modal-warning fade in" th:id="modal-warning+${permissao.id }">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -152,14 +162,14 @@
                                                 <span aria-hidden="true">×</span></button>
                                         </div>
                                         <div class="modal-body">
-                                            <h3>Deseja realmente remover Produto?</h3>
+                                            <h3>Deseja realmente remover permissao?</h3>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-outline pull-left"
                                                     data-dismiss="modal">Fechar
                                             </button>
                                             <a type="button" class="btn btn-outline"
-                                               th:href="@{/administrativo/produtos/remover/{id}(id=${produto.id})}"><i
+                                               th:href="@{/administrativo/permissoes/remover/{id}(id=${permissao.id})}"><i
                                                     class="fa fa-check"></i>&nbsp;Sim</a>
                                         </div>
                                     </div>

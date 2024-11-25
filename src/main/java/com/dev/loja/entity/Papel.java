@@ -16,9 +16,7 @@ public class Papel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String nome;
-    private String sigla;
 
 
     public Long getId() {
