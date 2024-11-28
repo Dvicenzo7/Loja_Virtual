@@ -19,7 +19,7 @@ import java.util.Optional;
 @Controller
 public class ProdutoController {
 
-    private static String caminhoImagens = "C:/Users/User/Downloads/imagens/";
+    private static String caminhoImagens = "C:/Users/daniel.vicenzo/Downloads/imagens_loja/";
 
     @Autowired
     private ProdutoRepository produtoRepository;
